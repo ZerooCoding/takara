@@ -1,4 +1,4 @@
-const config = require(`../../takara/config.json`);
+const config = require(`../../config.json`);
 function setPresence(Client, count) {
     const status = [
         "on $GUILDS guilds",

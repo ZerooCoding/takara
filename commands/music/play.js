@@ -1,5 +1,6 @@
 const { Util } = require('discord.js');
 const Discord = require(`discord.js`);
+const db = require("quick.db");
 const moment = require(`moment`);
 const dotenv = require('dotenv');
 dotenv.config();
@@ -7,6 +8,7 @@ const YouTube = require(`simple-youtube-api`);
 const youtube = new YouTube(process.env.GOOGLE_API_KEY);
 const ytdl = require('ytdl-core');
 module.exports.run = async (Client, message, args) => {
+    if (db.get(`guild.${message.guild.id}.music`) === false) return message.channel.send("Music isn't activated on this guild.\nActivate it with the \`music\` command in the setup category.");
     const { channel } = message.member.voice;
     const novoicechannel = new Discord.MessageEmbed()
         .setAuthor(message.author.tag, message.author.avatarURL() || `https://media3.giphy.com/media/TqiwHbFBaZ4ti/giphy.gif`)

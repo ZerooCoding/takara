@@ -7,6 +7,7 @@ module.exports = async (Client, message) => {
     if (!db.get(`guild.${message.guild.id}.prefix`)) db.set(`guild.${message.guild.id}.prefix`, config.DEFAULT_PREFIX);
     if (!db.get(`guild.${message.guild.id}.music`)) db.set(`guild.${message.guild.id}.music`, false);
     if (!message.content.startsWith(db.get(`guild.${message.guild.id}.prefix`))) return;
+    if (!db.get(`user.${message.author.id}.rank`)) db.set(`user.${message.author.id}.rank`, "USER");
     if (!db.get(`user.${message.author.id}.banned`)) db.set(`user.${message.author.id}.banned`, false);
     const youreBanned = new Discord.MessageEmbed()
         .setAuthor(message.author.tag, message.author.avatarURL())

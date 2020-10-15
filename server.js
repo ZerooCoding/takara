@@ -18,6 +18,26 @@ fs.readdir("./events/client/", (error, files) => {
     });
 });
 
+fs.readdir("./events/globalchat/", (error, files) => {
+    if (error) return console.error(error);
+    files.forEach(file => {
+        const event = require("./events/globalchat/" + file);
+        let eventName = file.split(".")[0];
+        Client.on(eventName, event.bind(null, Client));
+        console.log("[Event:Globalchat] " + eventName.toUpperCase());
+    });
+});
+
+fs.readdir("./events/serverlog/", (error, files) => {
+    if (error) return console.error(error);
+    files.forEach(file => {
+        const event = require("./events/serverlog/" + file);
+        let eventName = file.split(".")[0];
+        Client.on(eventName, event.bind(null, Client));
+        console.log("[Event:Serverlog] " + eventName.toUpperCase());
+    });
+});
+
 fs.readdir("./commands/main/", (error, files) => {
     if (error) return console.error(error);
     files.forEach(file => {

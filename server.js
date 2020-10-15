@@ -46,4 +46,18 @@ fs.readdir("./commands/music/", (error, files) => {
     });
 });
 
+fs.readdir("./commands/staff/", (error, files) => {
+    if (error) return console.error(error);
+    files.forEach(file => {
+        if (!file.endsWith(".js")) return;
+        let props = require("./commands/staff/" + file);
+        let commandName = file.split(".")[0];
+        Client.commands.set(commandName, props);
+        props.help.Aliases.forEach(alias => {
+            Client.aliases.set(alias, commandName);
+        });
+        console.log("[Command:Staff] " + commandName.toUpperCase());
+    });
+});
+
 Client.login(process.env.TOKEN);

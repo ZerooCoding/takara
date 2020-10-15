@@ -18,6 +18,7 @@
   "homepage": "https://github.com/DieKommunikation/takara#readme",
   "dependencies": {
     "discord.js": "^12.3.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "quick.db": "^7.1.3"
   }
 }

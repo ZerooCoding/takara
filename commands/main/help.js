@@ -34,4 +34,4 @@ module.exports.help = {
     Permissions: ["None"],
     Usage: ["help", "help <Command>"],
     Description: "Get informations about every command."
-}
+};

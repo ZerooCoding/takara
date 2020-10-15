@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/DieKommunikation/takara/issues"
   },
-  "homepage": "https://github.com/DieKommunikation/takara#readme"
+  "homepage": "https://github.com/DieKommunikation/takara#readme",
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "dotenv": "^8.2.0"
+  }
 }

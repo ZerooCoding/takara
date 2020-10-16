@@ -1,5 +1,6 @@
 {
     "VERSION": "1.0.0",
     "OWNER": "303142922780672013",
-    "DEFAULT_PREFIX": "t!"
+    "DEFAULT_PREFIX": "t!",
+    "DEFAULT_CURRENCY": "$"
 }

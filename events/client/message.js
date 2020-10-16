@@ -8,7 +8,9 @@ module.exports = async (Client, message) => {
     if (!db.get(`guild.${message.guild.id}.music`)) db.set(`guild.${message.guild.id}.music`, false);
     if (!db.get(`guild.${message.guild.id}.level`)) db.set(`guild.${message.guild.id}.level`, false);
     if (!db.get(`guild.${message.guild.id}.economy`)) db.set(`guild.${message.guild.id}.economy`, false);
+    if (!db.get(`guild.${message.guild.id}.currency`)) db.set(`guild.${message.guild.id}.currency`, config.DEFAULT_CURRENCY);
     if (!message.content.startsWith(db.get(`guild.${message.guild.id}.prefix`))) return;
+    if (!db.get(`money_${message.author.id}`)) db.set(`money_${message.author.id}`, 0);
     if (!db.get(`user.${message.author.id}.rank`)) db.set(`user.${message.author.id}.rank`, "user");
     if (!db.get(`user.${message.author.id}.banned`)) db.set(`user.${message.author.id}.banned`, false);
     const youreBanned = new Discord.MessageEmbed()

@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const db = require("quick.db");
 module.exports.run = async (Client, message, args) => {
     let mainCommands = [];
     fs.readdir("./commands/main/", (error, files) => {
@@ -37,12 +38,17 @@ module.exports.run = async (Client, message, args) => {
     setTimeout(() => {
         commandList.setAuthor(Client.user.tag, Client.user.avatarURL())
             .addField("Main", mainCommands.join(", "))
-            .addField("Music", musicCommands.join(", "))
             .addField("Setup", setupCommands.join(", "))
             .addField("Staff", staffCommands.join(", "))
             .setTimestamp();
+        if (db.get(`guild.${message.guild.id}.music`) === false) commandList.addField("Music (Deactivated)", musicCommands.join(", "))
+            else commandList.addField("Music (Active)", musicCommands.join(", "))
+        /*if (db.get(`guild.${message.guild.id}.level`) === false) commandList.addField("Level (Deactivated)", musicCommands.join(", "))
+            else commandList.addField("Level (Active)", musicCommands.join(", "))
+        if (db.get(`guild.${message.guild.id}.economy`) === false) commandList.addField("Economy (Deactivated)", musicCommands.join(", "))
+            else commandList.addField("Economy (Active)", musicCommands.join(", "))*/
         if (!args[0]) return message.channel.send(commandList);
-    }, 500);
+    }, 200);
     if (args[0]) {
         let command = args[0].toLowerCase();
         if (Client.commands.has(command)) {

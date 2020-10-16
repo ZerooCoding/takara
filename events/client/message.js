@@ -5,6 +5,8 @@ module.exports = async (Client, message) => {
     if (message.author.bot) return;
     if (message.channel.type === "dm") return;
     if (!db.get(`guild.${message.guild.id}.prefix`)) db.set(`guild.${message.guild.id}.prefix`, config.DEFAULT_PREFIX);
+    if (!db.get(`guild.${message.guild.id}.fun`)) db.set(`guild.${message.guild.id}.fun`, false);
+    if (!db.get(`guild.${message.guild.id}.nsfw`)) db.set(`guild.${message.guild.id}.nsfw`, false);
     if (!db.get(`guild.${message.guild.id}.music`)) db.set(`guild.${message.guild.id}.music`, false);
     if (!db.get(`guild.${message.guild.id}.level`)) db.set(`guild.${message.guild.id}.level`, false);
     if (!db.get(`guild.${message.guild.id}.economy`)) db.set(`guild.${message.guild.id}.economy`, false);
@@ -27,6 +29,8 @@ module.exports = async (Client, message) => {
         command = Client.commands.get(Client.aliases.get(cmd));
     }
     if (!command) return;
+    if (command.help.Category === "Fun" && db.get(`guild.${message.guild.id}.fun`) === false) return message.channel.send("Fun isn't activated on this guild.\nActivate it with the \`fun\` command in the setup category.");
+    if (command.help.Category === "NSFW" && db.get(`guild.${message.guild.id}.nsfw`) === false) return message.channel.send("NSFW isn't activated on this guild.\nActivate it with the \`nsfw\` command in the setup category.");
     if (command.help.Category === "Music" && db.get(`guild.${message.guild.id}.music`) === false) return message.channel.send("Music isn't activated on this guild.\nActivate it with the \`music\` command in the setup category.");
     if (command.help.Category === "Level" && db.get(`guild.${message.guild.id}.level`) === false) return message.channel.send("Level isn't activated on this guild.\nActivate it with the \`level\` command in the setup category.");
     if (command.help.Category === "Economy" && db.get(`guild.${message.guild.id}.economy`) === false) return message.channel.send("Economy isn't activated on this guild.\nActivate it with the \`economy\` command in the setup category.");

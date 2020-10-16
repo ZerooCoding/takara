@@ -8,6 +8,8 @@ Client.aliases = new Map();
 Client.commands = new Map();
 Client.queue = new Map();
 
+console.clear();
+
 fs.readdir("./events/client/", (error, files) => {
     if (error) return console.error(error);
     files.forEach(file => {
@@ -129,6 +131,34 @@ fs.readdir("./commands/level/", (error, files) => {
             Client.aliases.set(alias, commandName);
         });
         console.log("[Command:Level] " + commandName.toUpperCase());
+    });
+});
+
+fs.readdir("./commands/fun/", (error, files) => {
+    if (error) return console.error(error);
+    files.forEach(file => {
+        if (!file.endsWith(".js")) return;
+        let props = require("./commands/fun/" + file);
+        let commandName = file.split(".")[0];
+        Client.commands.set(commandName, props);
+        props.help.Aliases.forEach(alias => {
+            Client.aliases.set(alias, commandName);
+        });
+        console.log("[Command:Fun] " + commandName.toUpperCase());
+    });
+});
+
+fs.readdir("./commands/nsfw/", (error, files) => {
+    if (error) return console.error(error);
+    files.forEach(file => {
+        if (!file.endsWith(".js")) return;
+        let props = require("./commands/nsfw/" + file);
+        let commandName = file.split(".")[0];
+        Client.commands.set(commandName, props);
+        props.help.Aliases.forEach(alias => {
+            Client.aliases.set(alias, commandName);
+        });
+        console.log("[Command:NSFW] " + commandName.toUpperCase());
     });
 });
 

@@ -1,8 +1,48 @@
 const Discord = require("discord.js");
+const fs = require("fs");
 module.exports.run = async (Client, message, args) => {
+    let mainCommands = [];
+    fs.readdir("./commands/main/", (error, files) => {
+        if (error) return console.error(error);
+        files.forEach(file => {
+            if (!file.endsWith(".js")) return;
+            mainCommands.push(`${file.split(".")[0]}`);
+        });
+    });
+    let musicCommands = [];
+    fs.readdir("./commands/music/", (error, files) => {
+        if (error) return console.error(error);
+        files.forEach(file => {
+            if (!file.endsWith(".js")) return;
+            musicCommands.push(`${file.split(".")[0]}`);
+        });
+    });
+    let setupCommands = [];
+    fs.readdir("./commands/setup/", (error, files) => {
+        if (error) return console.error(error);
+        files.forEach(file => {
+            if (!file.endsWith(".js")) return;
+            setupCommands.push(`${file.split(".")[0]}`);
+        });
+    });
+    let staffCommands = [];
+    fs.readdir("./commands/staff/", (error, files) => {
+        if (error) return console.error(error);
+        files.forEach(file => {
+            if (!file.endsWith(".js")) return;
+            staffCommands.push(`${file.split(".")[0]}`);
+        });
+    });
     const commandList = new Discord.MessageEmbed()
-        .setAuthor(Client.user.tag, Client.user.avatarURL())
-    if (!args[0]) return message.channel.send(commandList);
+    setTimeout(() => {
+        commandList.setAuthor(Client.user.tag, Client.user.avatarURL())
+            .addField("Main", mainCommands.join(", "))
+            .addField("Music", musicCommands.join(", "))
+            .addField("Setup", setupCommands.join(", "))
+            .addField("Staff", staffCommands.join(", "))
+            .setTimestamp();
+        if (!args[0]) return message.channel.send(commandList);
+    }, 500);
     if (args[0]) {
         let command = args[0].toLowerCase();
         if (Client.commands.has(command)) {

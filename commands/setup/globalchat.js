@@ -16,5 +16,5 @@ module.exports.help = {
     Category: "Setup",
     Permissions: ["MANAGE_GUILD"],
     Usage: ["globalchat"],
-    Description: "Sets the globalchat."
+    Description: "Sets the globalchat for your guild."
 };

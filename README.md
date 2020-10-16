@@ -25,5 +25,5 @@ In this repository you will be able see the source code for the bot.
 - Personal information:
     - The data stored for the profile command can be deleted at any time.
     - We don't knowingly collect any personal identifiable information from children under the age of 13.
-    - If you can't delete your data, we strongly recommend that you to contact us immediately.
+    - If you can't delete your data, we strongly recommend you to contact us immediately.
     - If you don't want your data to be public, we will try to remove it from our records as soon as possible.

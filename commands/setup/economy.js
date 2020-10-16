@@ -16,5 +16,5 @@ module.exports.help = {
     Category: "Setup",
     Permissions: ["MANAGE_GUILD"],
     Usage: ["economy"],
-    Description: "Activates/Deactivates the economy category for you guild."
+    Description: "Activates/Deactivates the economy category for your guild."
 };

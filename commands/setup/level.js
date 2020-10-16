@@ -16,5 +16,5 @@ module.exports.help = {
     Category: "Setup",
     Permissions: ["MANAGE_GUILD"],
     Usage: ["level"],
-    Description: "Activates/Deactivates the level category for you guild."
+    Description: "Activates/Deactivates the level category for your guild."
 };

@@ -38,6 +38,16 @@ fs.readdir("./events/serverlog/", (error, files) => {
     });
 });
 
+fs.readdir("./events/level/", (error, files) => {
+    if (error) return console.error(error);
+    files.forEach(file => {
+        const event = require("./events/level/" + file);
+        let eventName = file.split(".")[0];
+        Client.on(eventName, event.bind(null, Client));
+        console.log("[Event:Level] " + eventName.toUpperCase());
+    });
+});
+
 fs.readdir("./commands/main/", (error, files) => {
     if (error) return console.error(error);
     files.forEach(file => {
@@ -91,6 +101,34 @@ fs.readdir("./commands/staff/", (error, files) => {
             Client.aliases.set(alias, commandName);
         });
         console.log("[Command:Staff] " + commandName.toUpperCase());
+    });
+});
+
+fs.readdir("./commands/economy/", (error, files) => {
+    if (error) return console.error(error);
+    files.forEach(file => {
+        if (!file.endsWith(".js")) return;
+        let props = require("./commands/economy/" + file);
+        let commandName = file.split(".")[0];
+        Client.commands.set(commandName, props);
+        props.help.Aliases.forEach(alias => {
+            Client.aliases.set(alias, commandName);
+        });
+        console.log("[Command:Economy] " + commandName.toUpperCase());
+    });
+});
+
+fs.readdir("./commands/level/", (error, files) => {
+    if (error) return console.error(error);
+    files.forEach(file => {
+        if (!file.endsWith(".js")) return;
+        let props = require("./commands/level/" + file);
+        let commandName = file.split(".")[0];
+        Client.commands.set(commandName, props);
+        props.help.Aliases.forEach(alias => {
+            Client.aliases.set(alias, commandName);
+        });
+        console.log("[Command:Level] " + commandName.toUpperCase());
     });
 });
 

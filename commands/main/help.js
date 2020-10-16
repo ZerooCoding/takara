@@ -34,6 +34,22 @@ module.exports.run = async (Client, message, args) => {
             staffCommands.push(`${file.split(".")[0]}`);
         });
     });
+    let levelCommands = [];
+    fs.readdir("./commands/level/", (error, files) => {
+        if (error) return console.error(error);
+        files.forEach(file => {
+            if (!file.endsWith(".js")) return;
+            levelCommands.push(`${file.split(".")[0]}`);
+        });
+    });
+    let economyCommands = [];
+    fs.readdir("./commands/economy/", (error, files) => {
+        if (error) return console.error(error);
+        files.forEach(file => {
+            if (!file.endsWith(".js")) return;
+            economyCommands.push(`${file.split(".")[0]}`);
+        });
+    });
     const commandList = new Discord.MessageEmbed()
     setTimeout(() => {
         commandList.setAuthor(Client.user.tag, Client.user.avatarURL())
@@ -42,11 +58,11 @@ module.exports.run = async (Client, message, args) => {
             .addField("Staff", staffCommands.join(", "))
             .setTimestamp();
         if (db.get(`guild.${message.guild.id}.music`) === false) commandList.addField("Music (Deactivated)", musicCommands.join(", "))
-            else commandList.addField("Music (Active)", musicCommands.join(", "))
-        /*if (db.get(`guild.${message.guild.id}.level`) === false) commandList.addField("Level (Deactivated)", musicCommands.join(", "))
-            else commandList.addField("Level (Active)", musicCommands.join(", "))
-        if (db.get(`guild.${message.guild.id}.economy`) === false) commandList.addField("Economy (Deactivated)", musicCommands.join(", "))
-            else commandList.addField("Economy (Active)", musicCommands.join(", "))*/
+            else commandList.addField("Music (Activated)", musicCommands.join(", "))
+        if (db.get(`guild.${message.guild.id}.level`) === false) commandList.addField("Level (Deactivated)", levelCommands.join(", "))
+            else commandList.addField("Level (Activated)", levelCommands.join(", "))
+        if (db.get(`guild.${message.guild.id}.economy`) === false) commandList.addField("Economy (Deactivated)", economyCommands.join(", "))
+            else commandList.addField("Economy (Activated)", economyCommands.join(", "))
         if (!args[0]) return message.channel.send(commandList);
     }, 200);
     if (args[0]) {

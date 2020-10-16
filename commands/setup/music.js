@@ -16,5 +16,5 @@ module.exports.help = {
     Category: "Setup",
     Permissions: ["MANAGE_GUILD"],
     Usage: ["music"],
-    Description: "Activates/Deactivates the music category for you guild."
+    Description: "Activates/Deactivates the music category for your guild."
 };

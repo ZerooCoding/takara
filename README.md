@@ -12,7 +12,7 @@ In this repository you will be able see the source code for the bot.
 * Utility
 * NSFW
 
-# Can I use the bot in discord server?
+# Can I use the bot in my discord server?
 Yes, you can invite it to your discord server.
 
 You can invite the bot [by clicking here](https://discord.com/api/oauth2/authorize?client_id=728720543003705395&permissions=305523959&scope=bot).

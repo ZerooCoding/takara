@@ -12,6 +12,7 @@ In this repository you will be able see the source code for the bot.
 * Utility
 * Level
 * Economy
+* Setup
 * NSFW
 
 # Can I use the bot in my discord server?

@@ -10,6 +10,8 @@ In this repository you will be able see the source code for the bot.
 * Music
 * Fun
 * Utility
+* Level
+* Economy
 * NSFW
 
 # Can I use the bot in my discord server?
@@ -30,7 +32,7 @@ If you need any help setting the bot up, join the [support server](https://disco
     - We store the data to improve the quality of our services.
 - How we store the collected data:
     - The data is stored directly on a non-writeable Database.
-    - The database is not public and accessible to everyone. 
+    - The database is not public or accessible to everyone. 
 - Personal information:
     - The data stored for the profile command can be deleted at any time.
     - We don't knowingly collect any personal identifiable information from children under the age of 13.

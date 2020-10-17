@@ -6,7 +6,7 @@ module.exports.run = async (Client, message, args) => {
         db.set(`guild.${message.guild.id}.economy`, true);
         return message.channel.send("You activated the economy category for this guild.");
     } else {
-        db.set(`guild.${message.guild.id}.music`, false);
+        db.set(`guild.${message.guild.id}.economy`, false);
         return message.channel.send("You deactivated the economy category for this guild.");
     }
 };

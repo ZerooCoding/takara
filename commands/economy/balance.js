@@ -5,7 +5,7 @@ module.exports.run = async (Client, message, args) => {
     
     const moneyInformation = new Discord.MessageEmbed()
         .setAuthor(member.user.tag, member.user.avatarURL({ dynamic: true }))
-        .addField("Money", `${db.get(`money_${member.id}`)}${db.get(`guild.${message.guild.id}.currency`)}`)
+        .addField("Your Balance", `${db.get(`money_${member.id}`)}${db.get(`guild.${message.guild.id}.currency`)}`)
         .setTimestamp();
     return message.channel.send(moneyInformation);
 };

@@ -79,8 +79,8 @@ module.exports.run = async (Client, message, args) => {
         commandList.setAuthor(Client.user.tag, Client.user.avatarURL())
             .addField(`[${mainCommands.length}] Main`, mainCommands.join(", "))
             .addField(`[${setupCommands.length}] Setup`, setupCommands.join(", "))
-            .addField(`[${staffCommands.length}] Staff`, staffCommands.join(", "))
             .setTimestamp();
+        if (db.get(`user.${message.author.id}.rank`) !== "user" && db.get(`user.${message.author.id}.rank`) !== "premium") commandList.addField(`[${staffCommands.length}] Staff`, staffCommands.join(", "))
         if (db.get(`guild.${message.guild.id}.fun`) === false) commandList.addField(`[${funCommands.length}] Fun (Deactivated)`, funCommands.join(", "));
             else commandList.addField(`[${funCommands.length}] Fun (Activated)`, funCommands.join(", "));
         if (db.get(`guild.${message.guild.id}.music`) === false) commandList.addField(`[${musicCommands.length}] Music (Deactivated)`, musicCommands.join(", "));

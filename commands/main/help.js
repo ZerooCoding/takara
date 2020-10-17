@@ -82,17 +82,17 @@ module.exports.run = async (Client, message, args) => {
             .setTimestamp();
         if (db.get(`user.${message.author.id}.rank`) !== "user" && db.get(`user.${message.author.id}.rank`) !== "premium") commandList.addField(`[${staffCommands.length}] Staff`, staffCommands.join(", "))
         if (db.get(`guild.${message.guild.id}.fun`) === false) commandList.addField(`[${funCommands.length}] Fun (Deactivated)`, funCommands.join(", "));
-            else commandList.addField(`[${funCommands.length}] Fun (Activated)`, funCommands.join(", "));
+        else commandList.addField(`[${funCommands.length}] Fun (Activated)`, funCommands.join(", "));
         if (db.get(`guild.${message.guild.id}.music`) === false) commandList.addField(`[${musicCommands.length}] Music (Deactivated)`, musicCommands.join(", "));
-            else commandList.addField(`[${musicCommands.length}] Music (Activated)`, musicCommands.join(", "));
+        else commandList.addField(`[${musicCommands.length}] Music (Activated)`, musicCommands.join(", "));
         if (db.get(`guild.${message.guild.id}.level`) === false) commandList.addField(`[${levelCommands.length}] Level (Deactivated)`, levelCommands.join(", "));
-            else commandList.addField(`[${levelCommands.length}] Level (Activated)`, levelCommands.join(", "));
+        else commandList.addField(`[${levelCommands.length}] Level (Activated)`, levelCommands.join(", "));
         if (db.get(`guild.${message.guild.id}.economy`) === false) commandList.addField(`[${economyCommands.length}] Economy (Deactivated)`, economyCommands.join(", "));
-            else commandList.addField(`[${economyCommands.length}] Economy (Activated)`, economyCommands.join(", "));
+        else commandList.addField(`[${economyCommands.length}] Economy (Activated)`, economyCommands.join(", "));
         if (db.get(`guild.${message.guild.id}.utility`) === false) commandList.addField(`[${utilityCommands.length}] Utility (Deactivated)`, utilityCommands.join(", "));
-            else commandList.addField(`[${utilityCommands.length}] Utility (Activated)`, utilityCommands.join(", "));
+        else commandList.addField(`[${utilityCommands.length}] Utility (Activated)`, utilityCommands.join(", "));
         if (db.get(`guild.${message.guild.id}.nsfw`) === false) commandList.addField(`[${nsfwCommands.length}] NSFW (Deactivated)`, nsfwCommands.join(", "));
-            else commandList.addField(`[${nsfwCommands.length}] NSFW (Activated)`, nsfwCommands.join(", "));
+        else commandList.addField(`[${nsfwCommands.length}] NSFW (Activated)`, nsfwCommands.join(", "));
         if (!args[0]) return message.channel.send(commandList);
     }, 300);
     if (args[0]) {

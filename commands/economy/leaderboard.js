@@ -5,7 +5,7 @@ module.exports.run = async (Client, message, args) => {
     money.length = 10;
     var list = "";
     for (var i in money) {
-        list += `🏅 ${money.indexOf(money[i]) + 1}. ${Client.users.cache.get(money[i].ID.split('_')[1]) ? Client.users.cache.get(money[i].ID.split('_')[1]).tag : "Unknwon#0000"} | Balance: ${money[i].data}$\n`
+        list += `🏅 ${money.indexOf(money[i]) + 1}. ${Client.users.cache.get(money[i].ID.split('_')[1]) ? Client.users.cache.get(money[i].ID.split('_')[1]).tag : "Unknwon#0000"} | Balance: ${money[i].data}${db.get(`guild.${message.guild.id}.currency`)}\n`
     }
     const leaderboard = new Discord.MessageEmbed()
         .setAuthor(Client.user.tag, Client.user.avatarURL())
@@ -15,7 +15,7 @@ module.exports.run = async (Client, message, args) => {
 };
 module.exports.help = {
     Name: "Leaderboard",
-    Aliases: ["leaderboard"],
+    Aliases: ["leaderboard", "lb"],
     Category: "Economy",
     Permissions: ["None"],
     Usage: ["leaderboard"],

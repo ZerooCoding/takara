@@ -66,6 +66,14 @@ module.exports.run = async (Client, message, args) => {
             nsfwCommands.push(`${file.split(".")[0]}`);
         });
     });
+    let utilityCommands = [];
+    fs.readdir("./commands/utility/", (error, files) => {
+        if (error) return console.error(error);
+        files.forEach(file => {
+            if (!file.endsWith(".js")) return;
+            utilityCommands.push(`${file.split(".")[0]}`);
+        });
+    });
     const commandList = new Discord.MessageEmbed()
     setTimeout(() => {
         commandList.setAuthor(Client.user.tag, Client.user.avatarURL())
@@ -73,16 +81,18 @@ module.exports.run = async (Client, message, args) => {
             .addField("Setup", setupCommands.join(", "))
             .addField("Staff", staffCommands.join(", "))
             .setTimestamp();
-        if (db.get(`guild.${message.guild.id}.fun`) === false) commandList.addField("Fun (Deactivated)", funCommands.join(", "))
-            else commandList.addField("Fun (Activated)", funCommands.join(", "))
-        if (db.get(`guild.${message.guild.id}.music`) === false) commandList.addField("Music (Deactivated)", musicCommands.join(", "))
-            else commandList.addField("Music (Activated)", musicCommands.join(", "))
-        if (db.get(`guild.${message.guild.id}.level`) === false) commandList.addField("Level (Deactivated)", levelCommands.join(", "))
-            else commandList.addField("Level (Activated)", levelCommands.join(", "))
-        if (db.get(`guild.${message.guild.id}.economy`) === false) commandList.addField("Economy (Deactivated)", economyCommands.join(", "))
-            else commandList.addField("Economy (Activated)", economyCommands.join(", "))
-        if (db.get(`guild.${message.guild.id}.nsfw`) === false) commandList.addField("NSFW (Deactivated)", nsfwCommands.join(", "))
-            else commandList.addField("NSFW (Activated)", nsfwCommands.join(", "))
+        if (db.get(`guild.${message.guild.id}.fun`) === false) commandList.addField("Fun (Deactivated)", funCommands.join(", "));
+            else commandList.addField("Fun (Activated)", funCommands.join(", "));
+        if (db.get(`guild.${message.guild.id}.music`) === false) commandList.addField("Music (Deactivated)", musicCommands.join(", "));
+            else commandList.addField("Music (Activated)", musicCommands.join(", "));
+        if (db.get(`guild.${message.guild.id}.level`) === false) commandList.addField("Level (Deactivated)", levelCommands.join(", "));
+            else commandList.addField("Level (Activated)", levelCommands.join(", "));
+        if (db.get(`guild.${message.guild.id}.economy`) === false) commandList.addField("Economy (Deactivated)", economyCommands.join(", "));
+            else commandList.addField("Economy (Activated)", economyCommands.join(", "));
+        if (db.get(`guild.${message.guild.id}.economy`) === false) commandList.addField("Utility (Deactivated)", utilityCommands.join(", "));
+            else commandList.addField("Utility (Activated)", utilityCommands.join(", "));
+        if (db.get(`guild.${message.guild.id}.nsfw`) === false) commandList.addField("NSFW (Deactivated)", nsfwCommands.join(", "));
+            else commandList.addField("NSFW (Activated)", nsfwCommands.join(", "));
         if (!args[0]) return message.channel.send(commandList);
     }, 300);
     if (args[0]) {
@@ -115,5 +125,5 @@ module.exports.help = {
     Category: "Main",
     Permissions: ["None"],
     Usage: ["help", "help <Command>"],
-    Description: "Get informations about every command."
+    Description: "Get information about every command."
 };

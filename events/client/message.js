@@ -9,6 +9,7 @@ module.exports = async (Client, message) => {
     if (!db.get(`guild.${message.guild.id}.nsfw`)) db.set(`guild.${message.guild.id}.nsfw`, false);
     if (!db.get(`guild.${message.guild.id}.music`)) db.set(`guild.${message.guild.id}.music`, false);
     if (!db.get(`guild.${message.guild.id}.level`)) db.set(`guild.${message.guild.id}.level`, false);
+    if (!db.get(`guild.${message.guild.id}.utility`)) db.set(`guild.${message.guild.id}.utility`, false);
     if (!db.get(`guild.${message.guild.id}.economy`)) db.set(`guild.${message.guild.id}.economy`, false);
     if (!db.get(`guild.${message.guild.id}.currency`)) db.set(`guild.${message.guild.id}.currency`, config.DEFAULT_CURRENCY);
     if (!message.content.startsWith(db.get(`guild.${message.guild.id}.prefix`))) return;
@@ -33,6 +34,7 @@ module.exports = async (Client, message) => {
     if (command.help.Category === "NSFW" && db.get(`guild.${message.guild.id}.nsfw`) === false) return message.channel.send("NSFW isn't activated on this guild.\nActivate it with the \`nsfw\` command in the setup category.");
     if (command.help.Category === "Music" && db.get(`guild.${message.guild.id}.music`) === false) return message.channel.send("Music isn't activated on this guild.\nActivate it with the \`music\` command in the setup category.");
     if (command.help.Category === "Level" && db.get(`guild.${message.guild.id}.level`) === false) return message.channel.send("Level isn't activated on this guild.\nActivate it with the \`level\` command in the setup category.");
+    if (command.help.Category === "Utility" && db.get(`guild.${message.guild.id}.utility`) === false) return message.channel.send("Utility isn't activated on this guild.\nActivate it with the \`utility\` command in the setup category.");
     if (command.help.Category === "Economy" && db.get(`guild.${message.guild.id}.economy`) === false) return message.channel.send("Economy isn't activated on this guild.\nActivate it with the \`economy\` command in the setup category.");
     command.run(Client, message, args);
     console.log(`${message.author.tag}(${message.author.id}): ${command.help.Name} + ${args.join(" ") || "no arguments"}`);

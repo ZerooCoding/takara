@@ -25,6 +25,6 @@ module.exports = async (Client, message) => {
             .setThumbnail(message.author.avatarURL({ dynamic: true }))
             .setDescription("Level Up! Your new Level is: " + db.get(`level_${message.author.id}.level`))
             .setTimestamp();
-        if (db.get(`guild.${message.guild.id}.levelup`) === true) message.channel.send(levelUp);
+        if (db.get(`guild.${message.guild.id}.levelup`) === true) message.channel.send(levelUp).then(message => {if (message.deletable) message.delete({ timeout: 4000 })});
     }
 };

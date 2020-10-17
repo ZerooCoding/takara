@@ -10,10 +10,10 @@ module.exports.run = async (Client, message, args) => {
     return message.channel.send(moneyInformation);
 };
 module.exports.help = {
-    Name: "Money",
-    Aliases: ["money", "mon", "balance", "bal"],
+    Name: "Balance",
+    Aliases: ["balance", "bal", "money", "mon"],
     Category: "Economy",
     Permissions: ["None"],
-    Usage: ["money <@member>"],
+    Usage: ["balance <@member>"],
     Description: "Shows your current balance."
 };

@@ -60,7 +60,7 @@ module.exports.run = async (Client, message, args) => {
 };
 module.exports.help = {
     Name: "User Information",
-    Aliases: ["userinfo", "user-info", "userinformation", "userinfos", "user-information"],
+    Aliases: ["userinfo", "user-info", "userinformation", "userinfos", "user-information", "ui"],
     Category: "Utility",
     Permissions: ["None"],
     Usage: ["userinfo <@member>"],

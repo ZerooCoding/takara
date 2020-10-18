@@ -36,7 +36,7 @@ module.exports.run = async (Client, message, args) => {
 };
 module.exports.help = {
     Name: "Role Information",
-    Aliases: ["roleinfo", "roleinformation", "role-info", "role-information"],
+    Aliases: ["roleinfo", "roleinformation", "role-info", "role-information", "ri"],
     Category: "Utility",
     Permissions: ["None"],
     Usage: ["roleinfo [role]"],

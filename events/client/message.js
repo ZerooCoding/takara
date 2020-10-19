@@ -11,6 +11,7 @@ module.exports = async (Client, message) => {
     if (!db.get(`guild.${message.guild.id}.level`)) db.set(`guild.${message.guild.id}.level`, false);
     if (!db.get(`guild.${message.guild.id}.utility`)) db.set(`guild.${message.guild.id}.utility`, false);
     if (!db.get(`guild.${message.guild.id}.economy`)) db.set(`guild.${message.guild.id}.economy`, false);
+    if (!db.get(`guild.${message.guild.id}.moderation`)) db.set(`guild.${message.guild.id}.moderation`, false);
     if (!db.get(`guild.${message.guild.id}.currency`)) db.set(`guild.${message.guild.id}.currency`, config.DEFAULT_CURRENCY);
     if (!message.content.startsWith(db.get(`guild.${message.guild.id}.prefix`))) return;
     if (!db.get(`money_${message.author.id}`)) db.set(`money_${message.author.id}`, 0);
@@ -30,6 +31,7 @@ module.exports = async (Client, message) => {
         command = Client.commands.get(Client.aliases.get(cmd));
     }
     if (!command) return;
+    if (command.help.Category === "Moderation" && db.get(`guild.${message.guild.id}.moderation`) === false) return message.channel.send("Moderation isn't activated on this guild.\nActivate it with the \`moderation\` command in the setup category.");
     if (command.help.Category === "Fun" && db.get(`guild.${message.guild.id}.fun`) === false) return message.channel.send("Fun isn't activated on this guild.\nActivate it with the \`fun\` command in the setup category.");
     if (command.help.Category === "NSFW" && db.get(`guild.${message.guild.id}.nsfw`) === false) return message.channel.send("NSFW isn't activated on this guild.\nActivate it with the \`nsfw\` command in the setup category.");
     if (command.help.Category === "Music" && db.get(`guild.${message.guild.id}.music`) === false) return message.channel.send("Music isn't activated on this guild.\nActivate it with the \`music\` command in the setup category.");

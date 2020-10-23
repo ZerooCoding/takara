@@ -5,6 +5,7 @@ const config = require("../../config.json");
 module.exports = async (Client, message) => {
     if (message.author.bot) return;
     if (db.get(`user.${message.author.id}.banned`) === true) return;
+    if (!db.get(`user.${message.author.id}.rank`)) db.set(`user.${message.author.id}.rank`, "user");
     if (message.channel.id === `${db.get(`guild.${message.guild.id}.globalchat`)}`) {
         const args = message.content.slice(db.get(`guild.${message.guild.id}.prefix`).length).trim().split(/ +/g);
         const cmd = args.shift().toLowerCase();
